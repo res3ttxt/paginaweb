@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnimeWear - Tienda de Polos Anime Premium</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>AnimeWear <i class="fas fa-star"></i></h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#products" class="nav-link">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">Nosotros</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contacto</a>
+                </li>
+            </ul>
+            <div class="nav-icons">
+                <button class="favorites-btn" onclick="toggleFavorites()">
+                    <i class="fas fa-heart"></i>
+                    <span class="badge" id="favorites-count">0</span>
+                </button>
+                <button class="cart-btn" onclick="toggleCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge" id="cart-count">0</span>
+                </button>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Colección Exclusiva de Polos Anime</h1>
+            <p>Descubre los mejores diseños inspirados en tus animes favoritos. Calidad premium y diseños únicos.</p>
+            <button class="cta-btn" onclick="scrollToProducts()">
+                Ver Colección <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+        <div class="hero-image">
+            <img src="images/hero-anime.jpg" alt="Colección Anime">
+        </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="filters-section">
+        <div class="container">
+            <h2>Encuentra tu polo perfecto</h2>
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="category-filter">Categoría:</label>
+                    <select id="category-filter" onchange="filterProducts()">
+                        <option value="">Todas las categorías</option>
+                        <option value="naruto">Naruto</option>
+                        <option value="onepiece">One Piece</option>
+                        <option value="dragonball">Dragon Ball</option>
+                        <option value="attackontitan">Attack on Titan</option>
+                        <option value="demonslayer">Demon Slayer</option>
+                        <option value="myheroacademia">My Hero Academia</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="price-filter">Precio:</label>
+                    <select id="price-filter" onchange="filterProducts()">
+                        <option value="">Todos los precios</option>
+                        <option value="0-20">$0 - $20</option>
+                        <option value="20-35">$20 - $35</option>
+                        <option value="35-50">$35 - $50</option>
+                        <option value="50+">$50+</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="size-filter">Talla:</label>
+                    <select id="size-filter" onchange="filterProducts()">
+                        <option value="">Todas las tallas</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                </div>
+                <button class="clear-filters" onclick="clearFilters()">
+                    <i class="fas fa-times"></i> Limpiar filtros
+                </button>
+            </div>
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Buscar polos..." onkeyup="searchProducts()">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+        <div class="container">
+            <h2>Nuestra Colección</h2>
+            <div class="products-grid" id="products-grid">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+            <div class="load-more">
+                <button class="load-more-btn" onclick="loadMoreProducts()">
+                    Cargar más productos <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Sobre AnimeWear</h2>
+                    <p>Somos una tienda especializada en ropa anime de alta calidad. Cada diseño es cuidadosamente seleccionado para ofrecer a nuestros clientes productos únicos y duraderos.</p>
+                    <div class="features">
+                        <div class="feature">
+                            <i class="fas fa-shipping-fast"></i>
+                            <h3>Envío Rápido</h3>
+                            <p>Entrega en 24-48 horas</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>Calidad Premium</h3>
+                            <p>Materiales de primera calidad</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-undo"></i>
+                            <h3>Devolución Fácil</h3>
+                            <p>30 días para devoluciones</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="images/about-image.jpg" alt="Sobre nosotros">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>Contáctanos</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Dirección</h3>
+                            <p>Av. Anime 123, Ciudad Otaku</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Teléfono</h3>
+                            <p>+1 234 567 8900</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>info@animewear.com</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" onsubmit="submitForm(event)">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Tu nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Tu email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Tu mensaje" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        Enviar Mensaje <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Carrito de Compras</h3>
+            <button class="close-cart" onclick="toggleCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be loaded here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <h4>Total: $<span id="cart-total">0.00</span></h4>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">
+                Proceder al Pago <i class="fas fa-credit-card"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Favorites Sidebar -->
+    <div class="favorites-sidebar" id="favorites-sidebar">
+        <div class="favorites-header">
+            <h3>Favoritos</h3>
+            <button class="close-favorites" onclick="toggleFavorites()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="favorites-items" id="favorites-items">
+            <!-- Favorites items will be loaded here -->
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div class="modal" id="product-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div class="modal-body" id="modal-body">
+                <!-- Product details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>AnimeWear</h3>
+                    <p>Tu tienda de confianza para ropa anime de calidad premium.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="#home">Inicio</a></li>
+                        <li><a href="#products">Productos</a></li>
+                        <li><a href="#about">Nosotros</a></li>
+                        <li><a href="#contact">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Categorías</h4>
+                    <ul>
+                        <li><a href="#">Naruto</a></li>
+                        <li><a href="#">One Piece</a></li>
+                        <li><a href="#">Dragon Ball</a></li>
+                        <li><a href="#">Attack on Titan</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Soporte</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Envíos</a></li>
+                        <li><a href="#">Devoluciones</a></li>
+                        <li><a href="#">Términos</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AnimeWear. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/favorites.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
