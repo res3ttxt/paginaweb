@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AnimeWear - Tienda de Polos Anime Premium</title>
+    <meta name="description" content="Tienda online de polos anime premium. Descubre diseños exclusivos de Naruto, One Piece, Dragon Ball, Attack on Titan y más. Envío rápido y calidad garantizada.">
+    <meta name="keywords" content="polos anime, ropa anime, merchandising anime, camisetas anime, Naruto, One Piece, Dragon Ball">
+    <meta name="author" content="AnimeWear">
+    <meta property="og:title" content="AnimeWear - Tienda de Polos Anime Premium">
+    <meta property="og:description" content="Descubre los mejores diseños de polos anime. Calidad premium y diseños únicos.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1618556450994-a6a128ef0d9d?w=1200">
+    <title>AnimeWear - Tienda de Polos Anime Premium | Merchandising Oficial</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⭐</text></svg>">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,11 +40,14 @@
                 </li>
             </ul>
             <div class="nav-icons">
-                <button class="favorites-btn" onclick="toggleFavorites()">
+                <button class="theme-toggle" onclick="toggleDarkMode()" title="Cambiar tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="favorites-btn" onclick="toggleFavorites()" title="Ver favoritos">
                     <i class="fas fa-heart"></i>
                     <span class="badge" id="favorites-count">0</span>
                 </button>
-                <button class="cart-btn" onclick="toggleCart()">
+                <button class="cart-btn" onclick="toggleCart()" title="Ver carrito">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="badge" id="cart-count">0</span>
                 </button>
@@ -52,14 +63,70 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
+            <span class="hero-badge">✨ Nuevo 2025</span>
             <h1>Colección Exclusiva de Polos Anime</h1>
             <p>Descubre los mejores diseños inspirados en tus animes favoritos. Calidad premium y diseños únicos.</p>
-            <button class="cta-btn" onclick="scrollToProducts()">
-                Ver Colección <i class="fas fa-arrow-right"></i>
-            </button>
+            <div class="hero-buttons">
+                <button class="cta-btn" onclick="scrollToProducts()">
+                    Ver Colección <i class="fas fa-arrow-right"></i>
+                </button>
+                <button class="cta-btn-outline" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">
+                    Saber Más <i class="fas fa-info-circle"></i>
+                </button>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Productos</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">10k+</span>
+                    <span class="stat-label">Clientes Felices</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">4.9★</span>
+                    <span class="stat-label">Calificación</span>
+                </div>
+            </div>
         </div>
         <div class="hero-image">
             <img src="images/hero-anime.jpg" alt="Colección Anime">
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section class="featured-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>⚡ Productos Destacados</h2>
+                <p>Los favoritos de nuestros clientes</p>
+            </div>
+            <div class="featured-grid">
+                <div class="featured-card">
+                    <span class="featured-badge">🔥 Más Vendido</span>
+                    <h3>Colección Naruto</h3>
+                    <p>Diseños exclusivos del mundo ninja</p>
+                    <button class="featured-btn" onclick="document.getElementById('category-filter').value='naruto'; filterProducts();">
+                        Ver Ahora <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="featured-card">
+                    <span class="featured-badge">⭐ Nuevo</span>
+                    <h3>Colección One Piece</h3>
+                    <p>Los mejores diseños de los piratas</p>
+                    <button class="featured-btn" onclick="document.getElementById('category-filter').value='onepiece'; filterProducts();">
+                        Ver Ahora <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="featured-card">
+                    <span class="featured-badge">💎 Premium</span>
+                    <h3>Edición Limitada</h3>
+                    <p>Diseños únicos y exclusivos</p>
+                    <button class="featured-btn" onclick="scrollToProducts();">
+                        Ver Ahora <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -201,6 +268,75 @@
                         Enviar Mensaje <i class="fas fa-paper-plane"></i>
                     </button>
                 </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2>📧 Suscríbete a nuestro Newsletter</h2>
+                    <p>Recibe ofertas exclusivas, nuevos lanzamientos y noticias del mundo anime directo en tu email.</p>
+                </div>
+                <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" placeholder="Tu email aquí..." required>
+                    <button type="submit" class="newsletter-btn">
+                        Suscribirse <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2>💬 Lo que dicen nuestros clientes</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Los mejores polos anime que he comprado. La calidad es excelente y los diseños son únicos. ¡100% recomendado!"</p>
+                    <div class="testimonial-author">
+                        <strong>María G.</strong>
+                        <span>Cliente verificado</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Envío súper rápido y el empaque llegó perfecto. El polo de Naruto es increíble, la tela es muy cómoda."</p>
+                    <div class="testimonial-author">
+                        <strong>Carlos R.</strong>
+                        <span>Cliente verificado</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Atención al cliente excelente. Me ayudaron a elegir la talla correcta y quedé muy satisfecha con mi compra."</p>
+                    <div class="testimonial-author">
+                        <strong>Ana L.</strong>
+                        <span>Cliente verificado</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
