@@ -24,6 +24,10 @@
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
@@ -1526,6 +1530,36 @@ body.dark-mode .favorite-btn {
     .hero h1 {
         font-size: 2.5rem;
     }
+    
+    .hero-buttons {
+        justify-content: center;
+    }
+    
+    .hero-stats {
+        justify-content: center;
+        gap: 2rem;
+    }
+    
+    .featured-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .newsletter-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .newsletter-form {
+        max-width: 100%;
+    }
+    
+    .newsletter-form {
+        flex-direction: column;
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
 
     .filters {
         flex-direction: column;
@@ -1580,6 +1614,28 @@ body.dark-mode .favorite-btn {
 
     .hero p {
         font-size: 1rem;
+    }
+    
+    .hero-stats {
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+    
+    .stat-number {
+        font-size: 1.5rem;
+    }
+    
+    .cta-btn,
+    .cta-btn-outline {
+        width: 100%;
+    }
+    
+    .featured-card {
+        padding: 2rem;
+    }
+    
+    .newsletter-text h2 {
+        font-size: 1.5rem;
     }
 
     .products-grid {
