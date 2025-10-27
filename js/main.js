@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Initialize website
 function initializeWebsite() {
+    initializeDarkMode();
     setupNavigation();
     setupScrollEffects();
     setupAnimations();
@@ -457,7 +458,53 @@ function toggleDarkMode() {
     document.body.classList.toggle('dark-mode');
     const isDarkMode = document.body.classList.contains('dark-mode');
     localStorage.setItem('darkMode', isDarkMode);
+    
+    // Update theme icon
+    const themeIcon = document.querySelector('.theme-toggle i');
+    if (isDarkMode) {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+    } else {
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+    }
+    
     showMessage(`Modo ${isDarkMode ? 'oscuro' : 'claro'} activado`, 'success');
+}
+
+// Initialize dark mode from localStorage
+function initializeDarkMode() {
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+        const themeIcon = document.querySelector('.theme-toggle i');
+        if (themeIcon) {
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+    }
+}
+
+// Newsletter subscription
+function subscribeNewsletter(event) {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.querySelector('input[type="email"]').value;
+    const submitBtn = form.querySelector('.newsletter-btn');
+    
+    // Show loading state
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<div class="loading"></div> Procesando...';
+    submitBtn.disabled = true;
+    
+    // Simulate subscription
+    setTimeout(() => {
+        form.reset();
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        
+        showMessage('¡Gracias por suscribirte! Recibirás nuestras mejores ofertas.', 'success');
+    }, 1500);
 }
 
 // Performance monitoring
@@ -514,6 +561,7 @@ window.AnimeWear = {
     copyToClipboard,
     shareProduct,
     toggleDarkMode,
+    subscribeNewsletter,
     debounce,
     throttle
 };
